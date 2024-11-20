@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="robots" content="noindex, nofollow">
+
+	<script type="text/javascript">
+		function getReceiver() {
+			var qs = document.URL.split('?')[1];
+
+			if (qs) {
+				var params = qs.split('&');
+
+				for (var i = 0; i < params.length; i++) {
+					var pair = params[i].split('=');
+
+					if (pair.length == 2 && pair[0] == 'receiver') {
+						return pair[1];
+					}
+				}
+			}
+
+			return null;
+		}
+
+		if (document.cookie.match(/^(.*;)?\s*autologin\s*=\s*[^;]+(.*)?$/) && getReceiver() !== null) {
+			window.parent.postMessage('autologin cookie found', decodeURIComponent(getReceiver()));
+		}
+	</script>
+</head>
+
+<body>
+
+</body></html>
